@@ -26,6 +26,14 @@ var refile = 5000; // *millar, 10000 primer millar
 var plastMate = 860; // metro cuadrado
 var plastBrillante = 550; // metro cuadrado
 var cabida = [1, 2, 4, 8];
+var precioPapel;
+var precioPapel;
+var precioPlanchas;
+var precioPruebas;
+var precioArranque;
+var precioImpresion;
+var precioTintas;
+var precioRefile;
 //precio del papel = (3.5*ancho*alto*gramaje*cantidad)
 
 
@@ -35,29 +43,29 @@ function calcularGTO() {
     var colores;
     var cantidadPapel;
     var plastificado = 0;
-    if ($("#retiro").val() == 0) {
-        caras = 1;
-        colores = parseInt($("#tiro").val());
-    } else {
-        caras = 2;
-        colores = parseInt($("#tiro").val());
-    }
     //para tamaño media carta
     if ($("#size").val() == "media-carta") {
+        if ($("#retiro").val() === 0) {
+            caras = 1;
+            colores = parseInt($("#tiro").val());
+        } else {
+            caras = 2;
+            colores = parseInt($("#tiro").val());
+        }
         if (cantidad > 10000) {
             cantidadPapel = cantidad / cabida[2] * 1.1;
         } else {
             cantidadPapel = cantidad / cabida[2] + 350;
         }
-        var precioPapel = papel * 0.3 * 0.45 * parseInt($("#gramaje").val()) * cantidadPapel;
-        var precioPlanchas = planchas[0] * Math.max(parseInt($("#tiro").val()), parseInt($("#retiro").val()));
-        var precioPruebas = pruebas[0] * caras;
-        var precioArranque = arranque[0] * caras * colores;
-        var precioImpresion = impresion * caras * colores * (Math.floor(cantidadPapel / 1000) + 1);
-        var precioTintas = 10000 + tintas * (Math.floor(cantidadPapel / 1000));
-        var precioRefile = 10000 + refile * (Math.floor(cantidad / 1000));
+        precioPapel = papel * 0.3 * 0.45 * parseInt($("#gramaje").val()) * cantidadPapel;
+        precioPlanchas = planchas[0] * Math.max(parseInt($("#tiro").val()), parseInt($("#retiro").val()));
+        precioPruebas = pruebas[0] * caras;
+        precioArranque = arranque[0] * caras * colores;
+        precioImpresion = impresion * caras * colores * (Math.floor(cantidadPapel / 1000) + 1);
+        precioTintas = 10000 + tintas * (Math.floor(cantidadPapel / 1000));
+        precioRefile = 10000 + refile * (Math.floor(cantidad / 1000));
         if ($("#plastificado").is(':checked')) {
-            var carasPlast = 1
+            var carasPlast = 1;
             if ($("#2caras").is(':checked')) {
                 carasPlast = 2;
             }
@@ -68,26 +76,32 @@ function calcularGTO() {
             }
         }
         var total = precioPapel + precioPlanchas + precioPruebas + precioArranque + precioImpresion + precioTintas + precioRefile + plastificado;
-        total = (Math.floor(total / 1000)) * 1000
-        debugger;
+        total = (Math.floor(total / 1000)) * 1000;
         return total;
 
-    //para tamaño carta
+        //para tamaño carta
     } else if ($("#size").val() == "carta") {
+        if ($("#retiro").val() === 0) {
+            caras = 1;
+            colores = parseInt($("#tiro").val());
+        } else {
+            caras = 2;
+            colores = parseInt($("#tiro").val());
+        }
         if (cantidad > 5000) {
             cantidadPapel = cantidad / cabida[1] * 1.1;
         } else {
             cantidadPapel = cantidad / cabida[1] + 350;
         }
-        var precioPapel = papel * 0.3 * 0.45 * parseInt($("#gramaje").val()) * cantidadPapel;
-        var precioPlanchas = planchas[0] * Math.max(parseInt($("#tiro").val()), parseInt($("#retiro").val()));
-        var precioPruebas = pruebas[0] * caras;
-        var precioArranque = arranque[0] * caras * colores;
-        var precioImpresion = impresion * caras * colores * (Math.floor(cantidadPapel / 1000) + 1);
-        var precioTintas = 10000 + tintas * (Math.floor(cantidadPapel / 1000));
-        var precioRefile = 10000 + refile * (Math.floor(cantidad / 1000));
+        precioPapel = papel * 0.3 * 0.45 * parseInt($("#gramaje").val()) * cantidadPapel;
+        precioPlanchas = planchas[0] * Math.max(parseInt($("#tiro").val()), parseInt($("#retiro").val()));
+        precioPruebas = pruebas[0] * caras;
+        precioArranque = arranque[0] * caras * colores;
+        precioImpresion = impresion * caras * colores * (Math.floor(cantidadPapel / 1000) + 1);
+        precioTintas = 10000 + tintas * (Math.floor(cantidadPapel / 1000));
+        precioRefile = 10000 + refile * (Math.floor(cantidad / 1000));
         if ($("#plastificado").is(':checked')) {
-            var carasPlast = 1
+            var carasPlast = 1;
             if ($("#2caras").is(':checked')) {
                 carasPlast = 2;
             }
@@ -98,9 +112,123 @@ function calcularGTO() {
             }
         }
         var total = precioPapel + precioPlanchas + precioPruebas + precioArranque + precioImpresion + precioTintas + precioRefile + plastificado;
-        total = (Math.floor(total / 1000)) * 1000
+        total = (Math.floor(total / 1000)) * 1000;
 
         return total;
+        //para tamaño doble carta    
+    } else if ($("#size").val() == "doble-carta") {
+        if ($("#retiro").val() === 0) {
+            caras = 1;
+            colores = parseInt($("#tiro").val());
+        } else {
+            caras = 2;
+            colores = parseInt($("#tiro").val()) + parseInt($("#retiro").val());
+        }
+        if (cantidad > 3000) {
+            cantidadPapel = cantidad / cabida[0] * 1.1;
+        } else {
+            cantidadPapel = cantidad / cabida[0] + 350;
+        }
+        precioPapel = papel * 0.3 * 0.45 * parseInt($("#gramaje").val()) * cantidadPapel;
+        precioPlanchas = planchas[0] * parseInt($("#tiro").val()) + parseInt($("#retiro").val());
+        precioPruebas = pruebas[0] * caras;
+        precioArranque = arranque[0] * caras * colores;
+        precioImpresion = impresion * caras * colores * (Math.floor(cantidadPapel / 1000) + 1);
+        precioTintas = 10000 + tintas * (Math.floor(cantidadPapel / 1000));
+        precioRefile = 10000 + refile * (Math.floor(cantidad / 1000));
+        if ($("#plastificado").is(':checked')) {
+            var carasPlast = 1;
+            if ($("#2caras").is(':checked')) {
+                carasPlast = 2;
+            }
+            if ($("#mate").is(':checked')) {
+                plastificado = 0.3 * 0.45 * carasPlast * cantidadPapel * plastMate;
+            } else if ($("#brillante").is(':checked')) {
+                plastificado = 0.3 * 0.45 * carasPlast * cantidadPapel * plastBrillante;
+            }
+        }
+        var total = precioPapel + precioPlanchas + precioPruebas + precioArranque + precioImpresion + precioTintas + precioRefile + plastificado;
+        total = (Math.floor(total / 1000)) * 1000;
+
+        return total;
+
+        // Para tamaño Oficio u octavo
+    } else if ($("#size").val() == "oficio" || $("#size").val() == "octavo") {
+        if ($("#retiro").val() === 0) {
+            caras = 1;
+            colores = parseInt($("#tiro").val());
+        } else {
+            caras = 2;
+            colores = parseInt($("#tiro").val());
+        }
+        if (cantidad > 5000) {
+            cantidadPapel = cantidad / cabida[1] * 1.1;
+        } else {
+            cantidadPapel = cantidad / cabida[1] + 350;
+        }
+        precioPapel = papel * 0.35 * 0.5 * parseInt($("#gramaje").val()) * cantidadPapel;
+        precioPlanchas = planchas[0] * Math.max(parseInt($("#tiro").val()), parseInt($("#retiro").val()));
+        precioPruebas = pruebas[0] * caras;
+        precioArranque = arranque[0] * caras * colores;
+        precioImpresion = impresion * caras * colores * (Math.floor(cantidadPapel / 1000) + 1);
+        precioTintas = 10000 + tintas * (Math.floor(cantidadPapel / 1000));
+        precioRefile = 10000 + refile * (Math.floor(cantidad / 1000));
+        if ($("#plastificado").is(':checked')) {
+            var carasPlast = 1;
+            if ($("#2caras").is(':checked')) {
+                carasPlast = 2;
+            }
+            if ($("#mate").is(':checked')) {
+                plastificado = 0.35 * 0.5 * carasPlast * cantidadPapel * plastMate;
+            } else if ($("#brillante").is(':checked')) {
+                plastificado = 0.35 * 0.5 * carasPlast * cantidadPapel * plastBrillante;
+            }
+        }
+        var total = precioPapel + precioPlanchas + precioPruebas + precioArranque + precioImpresion + precioTintas + precioRefile + plastificado;
+        total = (Math.floor(total / 1000)) * 1000;
+
+        return total;
+
+        //para tamaño cuarto    
+    } else if ($("#size").val() == "cuarto") {
+        if ($("#retiro").val() === 0) {
+            caras = 1;
+            colores = parseInt($("#tiro").val());
+        } else {
+            caras = 2;
+            colores = parseInt($("#tiro").val()) + parseInt($("#retiro").val());
+        }
+        if (cantidad > 3000) {
+            cantidadPapel = cantidad / cabida[0] * 1.1;
+        } else {
+            cantidadPapel = cantidad / cabida[0] + 350;
+        }
+        precioPapel = papel * 0.35 * 0.5 * parseInt($("#gramaje").val()) * cantidadPapel;
+        precioPlanchas = planchas[0] * parseInt($("#tiro").val()) + parseInt($("#retiro").val());
+        precioPruebas = pruebas[0] * caras;
+        precioArranque = arranque[0] * caras * colores;
+        precioImpresion = impresion * caras * colores * (Math.floor(cantidadPapel / 1000) + 1);
+        precioTintas = 10000 + tintas * (Math.floor(cantidadPapel / 1000));
+        precioRefile = 10000 + refile * (Math.floor(cantidad / 1000));
+        if ($("#plastificado").is(':checked')) {
+            var carasPlast = 1;
+            if ($("#2caras").is(':checked')) {
+                carasPlast = 2;
+            }
+            if ($("#mate").is(':checked')) {
+                plastificado = 0.35 * 0.5 * carasPlast * cantidadPapel * plastMate;
+            } else if ($("#brillante").is(':checked')) {
+                plastificado = 0.35 * 0.5 * carasPlast * cantidadPapel * plastBrillante;
+            }
+        }
+        var total = precioPapel + precioPlanchas + precioPruebas + precioArranque + precioImpresion + precioTintas + precioRefile + plastificado;
+        total = (Math.floor(total / 1000)) * 1000;
+
+        return total;
+
+        // Para otros tamaños
+    } else {
+        return 0;
     }
 }
 
@@ -113,7 +241,7 @@ $(document).ready(function () {
         $("#retiro").prop("disabled", false);
     });
     $("#plastificado").change(function () {
-        $(".plast").toggle("slow")
+        $(".plast").toggle("slow");
     });
     $("#papel").on("mouseup", function () {
         if ($("#papel").val() == "bond") {
@@ -122,7 +250,7 @@ $(document).ready(function () {
         } else {
             $("#plastificado").prop("disabled", false);
             $(".nobond").prop("disabled", false);
-            $(".bond").prop("disabled", true)
+            $(".bond").prop("disabled", true);
         }
     });
     $("#gramaje").on("mouseup", function () {
@@ -133,13 +261,13 @@ $(document).ready(function () {
         }
     });
     $("#cantidad1").on("mouseup", function () {
-        if ($("#producto").val() == null || $("#size").val() == null || $("#papel").val() == null || $("#gramaje").val() == null || $("#tiro").val() == null) {
+        if ($("#producto").val() === null || $("#size").val() === null || $("#papel").val() === null || $("#gramaje").val() === null || $("#tiro").val() === null) {
             alert("No puede haber espacios en blanco");
             $("#cantidad1").val("blank");
         } else {
-            var unitGTO = Math.floor(calcularGTO() / $("#cantidad1").val())
+            var unitGTO = Math.floor(calcularGTO() / $("#cantidad1").val());
             var precioGTO = unitGTO * $("#cantidad1").val();
-            var unitSM = Math.floor(calcularSM() / $("#cantidad1").val())
+            var unitSM = Math.floor(calcularSM() / $("#cantidad1").val());
             var precioSM = unitSM * $("#cantidad1").val();
             if (precioSM === 0) {
                 $("#total1").val("Valor total = $" + precioGTO);
