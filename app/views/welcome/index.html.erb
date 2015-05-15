@@ -1,5 +1,5 @@
 <form class="form" role="form">
-    <div class="col-md-offset-1">
+    <div class="col-md-offset-4">
         <div class="form-group">
             <div class="col-md-2 col-sm-12">
                 <label for="producto">Producto</label>
@@ -106,7 +106,15 @@
                 <br>
                 <input type="text" id="unit1" class="form-control valor" disabled style="background-color: #ffffff" placeholder="Valor Unitario"></div>
                 <br>
+
+                <% if user_signed_in? %>
+									<%= button_tag %>
+								<% else %>
+									<div>Inicie sesión <%= link_to "aquí", new_user_session_path  %> para agregar al carrito</div>
+								<% end %>
+
             </div>
         </div>
     </div>
 </form>
+
