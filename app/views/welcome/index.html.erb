@@ -1,0 +1,112 @@
+<form class="form" role="form">
+    <div class="col-md-offset-4">
+        <div class="form-group">
+            <div class="col-md-2 col-sm-12">
+                <label for="producto">Producto</label>
+            </div>
+            <div class="col-md-9 col-sm-12">
+                <div class="form-inline"><select class="form-control" id="producto">
+                    <option value="blank" selected disabled="true">Producto</option>
+                    <option value="volante">Volante/Afiche</option>
+                    <option value="plegable">Plegable</option>
+                </select></div>
+            </div>
+            <br>
+            <div class="col-md-2 col-sm-12">
+                <label for="size">Tamaño abierto</label>
+            </div>
+            <div class="col-md-9 col-sm-12">
+                <div class="form-inline"><select id="size" class="form-control">
+                    <option value="blank" selected disabled="true">Tamaño</option>
+                    <option value="media-carta">Media Carta</option>
+                    <option value="carta">Carta</option>
+                    <option value="doble-carta">Doble Carta</option>
+                    <option value="oficio">Oficio</option>
+                    <option value="octavo">1/8 pliego</option>
+                    <option value="cuarto">1/4 pliego</option>
+                    <option value="medio">1/2 pliego</option>
+                </select></div>
+            </div>
+            <br>
+            <div class="col-md-2 col-sm-12">
+                <label for="papel">Papel</label>
+            </div>
+            <div class="col-md-9 col-sm-12">
+                <div class="form-inline"><select class="form-control" id="papel">
+                    <option value="blank" selected disabled="true">Papel</option>
+                    <option value="bond">Bond</option>
+                    <option value="brillante">Esmaltado brillante</option>
+                    <option value="mate">Esmaltado mate</option>
+                </select>
+                <select class="form-control" id="gramaje">
+                    <option value="blank" selected disabled="true">gr</option>
+                    <option value="75" class="bond">75 gr</option>
+                    <option value="90">90 gr</option>
+                    <option value="115">115 gr</option>
+                    <option value="150" class="nobond">150 gr</option>
+                    <option value="200" class="nobond">200 gr</option>
+                    <option value="250" class="nobond">250 gr</option>
+                    <option value="300" class="nobond">300 gr</option>
+                </select></div>
+            </div>
+            <br>
+            <div class="col-md-2 col-sm-12">
+                <label for="tintas">Tintas</label>
+                <br>
+            </div>
+            <div class="col-md-9 col-sm-12">
+                <div class="form-inline"><select class="form-control" id="tiro">
+                    <option value="blank" selected disabled="true">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                </select>
+                <select class="form-control" id="retiro" disabled>
+                    <option value="0" selected>0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                </select></div>
+                <br>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <label for="Acabados">Acabados</label>
+                <br>
+            </div>
+            <div class="col-md-9 col-sm-12">
+                <input type="checkbox" name="acabados" id="plastificado">Plastificado
+                <br>
+                <div style="height:45px; width:120px"><span class="plast" hidden><input type="radio" name="plastificado" id="mate"><span>Mate</span>
+
+                    <input type="radio" name="plastificado" id="brillante"><span>Brillante</span>
+
+                    <input type="checkbox" id="2caras">2 caras</span>
+                    <br>
+                </div>
+                <!-- <input type="checkbox" name="acabados" id="troquelado">Troquelado -->
+            </div>
+            <br>
+            <div class="col-md-2 col-sm-12">
+                <label for="cantidad1">Cantidad</label>
+            </div>
+            <div class="col-md-9 col-sm-12">
+                <div class="form-inline"><select class="form-control cantidad" id="cantidad1">
+                    <option value="blank" selected disabled="true">Cantidad</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                    <option value="2000">2000</option>
+                    <option value="3000">3000</option>
+                    <option value="5000">5000</option>
+                    <option value="10000">10000</option>
+                    <option value="15000">15000</option>
+                    <option value="20000">20000</option>
+                </select>
+                <br>
+                <input type="text" id="total1" class="form-control valor" disabled style="background-color: #ffffff" placeholder="Valor Total">
+                <br>
+                <input type="text" id="unit1" class="form-control valor" disabled style="background-color: #ffffff" placeholder="Valor Unitario"></div>
+                <br>
+            </div>
+        </div>
+    </div>
+</form>
